@@ -32,7 +32,7 @@ export class ChartItComponent {
   }
 
   public loaded(args: ILoadedEventArgs) {
-    this.bufferedData.initialize(this.testData.getTestData(10), 200).subscribe((td: TestData[]) => {
+    this.bufferedData.initialize(this.testData.getTestData(5), 200).subscribe((td: TestData[]) => {
         this.chartOptions.data = td;
         this.chart.series[0].dataSource = this.chartOptions.data;
         this.chart.refresh();
