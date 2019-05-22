@@ -1,0 +1,24 @@
+
+<button ejs-button cssClass="e-primary" (click)="loaded($event)" >Load Data</button>
+<button ejs-button cssClass="e-primary" (click)="stop($event)" >Stop</button>
+
+<ejs-chart 
+  #chartContainer
+  id='chart-container' 
+  [title]='chartOptions.title' 
+  [legendSettings]='chartOptions.legend'
+  [tooltip]='chartOptions.tooltip'
+  >
+  <e-series-collection>
+    <e-series
+      [dataSource]='chartOptions.data'
+      type='Line'
+      xName='index'
+      yName='value'
+      name= 'value'
+      width= 2
+      [marker]='chartOptions.marker'
+      [animation]='chartOptions.animations'
+    ></e-series>
+  </e-series-collection>
+</ejs-chart>
