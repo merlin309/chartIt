@@ -2,6 +2,17 @@
 <button ejs-button cssClass="e-primary" (click)="loaded($event)" >Load Data</button>
 <button ejs-button cssClass="e-primary" (click)="stop($event)" >Stop</button>
 
+<h4>Interval (ms)</h4>
+<ejs-slider
+  [value]=10
+  [tooltip] = 'tooltip' 
+  [min] = 4
+  [max] = 200
+  [showButtons]=true
+  (tooltipChange)='tooltipChangeHandler($event)'
+  (changed)='sliderValueChanged($event)'
+></ejs-slider>
+
 <ejs-chart 
   #chartContainer
   id='chart-container' 

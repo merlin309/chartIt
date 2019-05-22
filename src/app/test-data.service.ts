@@ -3,6 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { timer } from 'rxjs/observable/timer';
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
+import { Subscriber } from 'rxjs/Subscriber';
+import { Subscription } from 'rxjs/Subscription';
 
 export class TestData {
   value?: number;
@@ -11,28 +14,28 @@ export class TestData {
 
 @Injectable()
 export class TestDataService {
-  flag = true;
   index: number = 0;
   observer: Subject<TestData> = new Subject<TestData>();
-
+  time: number = 0;
+  timer$: Observable<number>;
+  timerSubscription: Subscription;
   constructor() { }
 
   public initialIndex(i: number) {
     this.index = i;
   }
   public getTestData(time: number): Observable<TestData> {
-    this.flag = true;
+    this.time = time;
     const observer: Subject<TestData> = new Subject<TestData>();
-    timer(time, time).subscribe(n => {
+    this.timer$ = timer(this.time, this.time);
+    this.timerSubscription = this.timer$.subscribe(n => {
+      console.log(this.time);
       observer.next({ value: Math.floor((Math.random() * 100) + 1), index: ++this.index} );
-      if (!this.flag) {
-        observer.complete();
-      }
     });
     return observer;
   }
 
   public stopTestData() {
-    this.flag = false;
+    this.timerSubscription.unsubscribe();
   }
 }

@@ -12,6 +12,7 @@ import {
   DataLabelService,
   CategoryService
  } from '@syncfusion/ej2-angular-charts';
+import { SliderModule } from '@syncfusion/ej2-angular-inputs';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {
   ],
   imports: [
     BrowserModule,
-    ChartModule
+    ChartModule,
+    SliderModule
   ],
   providers: [
     ChartModule,
